@@ -9,7 +9,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins (for development, specify your frontend URL like "http://localhost:3000")
+    allow_origins=["https://onepiecetcglog-production.up.railway.app/"],  # Allow all origins (for development, specify your frontend URL like "http://localhost:3000")
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
     allow_headers=["*"],  # Allows all headers
