@@ -41,5 +41,5 @@ async def filter_cards(filter: str = None):
 
 @app.get("/api/cards")
 async def get_cards():
-    onePiece_scrape.main()
+    onePiece_scrape.main() #TO DO: Make it so it creates new database on open but not on every reload
     return database.getCardsDataBase()
