@@ -1,5 +1,6 @@
 
 import database
+import onePiece_scrape
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
@@ -40,4 +41,5 @@ async def filter_cards(filter: str = None):
 
 @app.get("/api/cards")
 async def get_cards():
-   return database.getCardsDataBase()
+    onePiece_scrape.main()
+    return database.getCardsDataBase()
