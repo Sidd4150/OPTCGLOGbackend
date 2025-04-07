@@ -26,9 +26,12 @@ def filterDataBase(filter):
             elif filter == "setNameASC":
                 sql = "SELECT * FROM cards ORDER BY setName ASC"
                 cursor.execute(sql)
+            elif filter == "reset":
+                sql = "SELECT * FROM cards"
+                cursor.execute(sql)
             else:
-                print(f"Filter received: {filter}")  # This will show you what value is being passed
-                search_name = f"%{filter}%"  # Adding wildcards for partial matching
+                print(f"Filter received: {filter}")  
+                search_name = f"%{filter}%"  
                 cursor.execute("SELECT * FROM cards WHERE name LIKE ?", (search_name,))
                 
             
