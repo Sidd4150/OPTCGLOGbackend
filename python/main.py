@@ -1,12 +1,21 @@
 
 import database
 import onePiece_scrape
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware  # Import CORSMiddleware
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = FastAPI()
+
+def update_database():
+    onePiece_scrape.main() 
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(update_database, "cron", hour=0, minute=0)
+scheduler.start()
 
 app.add_middleware(
     CORSMiddleware,
@@ -41,5 +50,6 @@ async def filter_cards(filter: str = None):
 
 @app.get("/api/cards")
 async def get_cards():
-    onePiece_scrape.main() #TO DO: Make it so it creates new database on open but not on every reload
+    
+  
     return database.getCardsDataBase()
